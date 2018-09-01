@@ -14,4 +14,7 @@
     <item name="listItemTeams" type="id" />
     <item name="spinner" type="id" />
     <item name="listSearchMatch" type="id" />
+    <item name="player_image" type="id" />
+    <item name="player_name" type="id" />
+    <item name="player_position" type="id" />
 </resources>

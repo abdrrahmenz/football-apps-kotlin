@@ -62,8 +62,7 @@ class TeamsFragment : Fragment(), AnkoComponent<Context>, TeamsView {
         }
 
         adapter = TeamsAdapter(listTeams) {
-//            ctx.startActivity<TeamDetailActivity>("id" to "${it.teamId}")
-            ctx.startActivity<DetailTeamsActivity>()
+            ctx.startActivity<DetailTeamsActivity>("teams_detail" to it)
         }
         listItem.adapter = adapter
 

@@ -50,7 +50,6 @@ class TeamUI : AnkoComponent<ViewGroup> {
             }
         }
     }
-
 }
 class TeamViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
