@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="viewpager" type="id" />
+    <item name="listPrevMatch" type="id" />
+    <item name="listNextMatch" type="id" />
+    <item name="tvDateEvent" type="id" />
+    <item name="tvTeamHomeName" type="id" />
+    <item name="tvTeamHomeScore" type="id" />
+    <item name="textViewVs" type="id" />
+    <item name="tvTeamAwayScore" type="id" />
+    <item name="tvTeamAwayName" type="id" />
+    <item name="team_badge" type="id" />
+    <item name="team_name" type="id" />
+    <item name="listItemTeams" type="id" />
+    <item name="spinner" type="id" />
+    <item name="listSearchMatch" type="id" />
+</resources>

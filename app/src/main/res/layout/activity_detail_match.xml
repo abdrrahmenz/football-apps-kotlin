@@ -1,0 +1,379 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.match.detailmatch.DetailMatchActivity">
+
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/swipeRefresh"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <android.support.constraint.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/tvDateEvent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="16dp"
+                    android:textColor="@android:color/holo_green_light"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.0"
+                    tools:text="@string/strDateEvent" />
+
+                <TextView
+                    android:id="@+id/tvHomeScore"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="24dp"
+                    android:textSize="30sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="@+id/textView4"
+                    app:layout_constraintEnd_toStartOf="@+id/textView4"
+                    app:layout_constraintTop_toTopOf="@+id/textView4"
+                    tools:text="@string/strHomeScore" />
+
+                <TextView
+                    android:id="@+id/textView4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="24dp"
+                    android:text="@string/strVs"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="@+id/tvDateEvent"
+                    app:layout_constraintHorizontal_bias="0.493"
+                    app:layout_constraintStart_toStartOf="@+id/tvDateEvent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvDateEvent" />
+
+                <TextView
+                    android:id="@+id/tvAwayScore"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:textSize="30sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="@+id/textView4"
+                    app:layout_constraintStart_toEndOf="@+id/textView4"
+                    app:layout_constraintTop_toTopOf="@+id/textView4"
+                    tools:text="@string/strAwayScore" />
+
+                <TextView
+                    android:id="@+id/tvHomeName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="42dp"
+                    android:layout_marginTop="24dp"
+                    android:textColor="@android:color/holo_green_light"
+                    android:textSize="18sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView4"
+                    tools:text="@string/strHomeName" />
+
+                <TextView
+                    android:id="@+id/tvHomeFormation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    app:layout_constraintEnd_toEndOf="@+id/tvHomeName"
+                    app:layout_constraintStart_toStartOf="@+id/tvHomeName"
+                    app:layout_constraintTop_toBottomOf="@+id/tvHomeName"
+                    tools:text="@string/strHomeFormation" />
+
+                <TextView
+                    android:id="@+id/tvAwayName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="42dp"
+                    android:layout_marginTop="24dp"
+                    android:textColor="@android:color/holo_green_light"
+                    android:textSize="18sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView4"
+                    tools:text="@string/strAwayName" />
+
+                <TextView
+                    android:id="@+id/tvAwayFormation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    app:layout_constraintEnd_toEndOf="@+id/tvAwayName"
+                    app:layout_constraintStart_toStartOf="@+id/tvAwayName"
+                    app:layout_constraintTop_toBottomOf="@+id/tvAwayName"
+                    tools:text="@string/strAwayFormation" />
+
+                <View
+                    android:id="@+id/view1"
+                    android:layout_width="match_parent"
+                    android:layout_height="1px"
+                    android:layout_marginTop="4dp"
+                    android:background="#FFAFAEAE"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvAwayFormation" />
+
+                <TextView
+                    android:id="@+id/textView10"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@android:color/holo_green_light"
+                    android:layout_marginTop="4dp"
+                    app:layout_constraintEnd_toEndOf="@+id/textView4"
+                    app:layout_constraintStart_toStartOf="@+id/textView4"
+                    app:layout_constraintTop_toBottomOf="@+id/view1"
+                    android:text="@string/strGoals" />
+
+                <TextView
+                    android:id="@+id/tvHomeGoalsDetail"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/textView10"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/textView10"
+                    app:layout_constraintVertical_bias="0.0"
+                    tools:text="@string/strHomeGoals" />
+
+                <TextView
+                    android:id="@+id/tvAwayGoalsDetail"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:textAlignment="viewEnd"
+                    app:layout_constraintBottom_toBottomOf="@+id/textView10"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/textView10"
+                    app:layout_constraintVertical_bias="0.0"
+                    tools:text="@string/strAwayGoals" />
+
+                <TextView
+                    android:id="@+id/textView13"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="@string/strShots"
+                    android:textColor="@android:color/holo_green_light"
+                    app:layout_constraintEnd_toEndOf="@+id/textView10"
+                    app:layout_constraintStart_toStartOf="@+id/textView10"
+                    app:layout_constraintTop_toBottomOf="@+id/tvHomeGoalsDetail" />
+
+                <TextView
+                    android:id="@+id/tvHomeShots"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintBottom_toBottomOf="@+id/textView13"
+                    app:layout_constraintStart_toStartOf="@+id/tvHomeGoalsDetail"
+                    app:layout_constraintTop_toTopOf="@+id/textView13"
+                    tools:text="@string/strHomeShots" />
+
+                <TextView
+                    android:id="@+id/tvAwayShots"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintBottom_toBottomOf="@+id/textView13"
+                    app:layout_constraintEnd_toEndOf="@+id/tvAwayGoalsDetail"
+                    app:layout_constraintTop_toTopOf="@+id/textView13"
+                    tools:text="@string/strAwayShots" />
+
+                <View
+                    android:id="@+id/view2"
+                    android:layout_width="match_parent"
+                    android:layout_height="1px"
+                    android:layout_marginTop="4dp"
+                    android:background="#FFAFAEAE"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvAwayShots" />
+
+                <TextView
+                    android:id="@+id/textView17"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="@string/strLineups"
+                    app:layout_constraintEnd_toEndOf="@+id/textView13"
+                    app:layout_constraintStart_toStartOf="@+id/textView13"
+                    app:layout_constraintTop_toBottomOf="@+id/view2" />
+
+                <TextView
+                    android:id="@+id/textView18"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="@string/strGoalKeeper"
+                    android:textColor="@android:color/holo_green_light"
+                    app:layout_constraintEnd_toEndOf="@+id/textView17"
+                    app:layout_constraintStart_toStartOf="@+id/textView17"
+                    app:layout_constraintTop_toBottomOf="@+id/textView17" />
+
+                <TextView
+                    android:id="@+id/tvHomeGoalKeeper"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="@+id/tvHomeShots"
+                    app:layout_constraintTop_toTopOf="@+id/textView18"
+                    tools:text="@string/strHomeGoalKeeper" />
+
+                <TextView
+                    android:id="@+id/tvAwayGoalKeeper"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="viewEnd"
+                    app:layout_constraintEnd_toEndOf="@+id/tvAwayShots"
+                    app:layout_constraintTop_toTopOf="@+id/textView18"
+                    tools:text="@string/strAwayGoalKeeper" />
+
+                <TextView
+                    android:id="@+id/textView21"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
+                    android:text="@string/strDefense"
+                    android:textColor="@android:color/holo_green_light"
+                    app:layout_constraintEnd_toEndOf="@+id/textView18"
+                    app:layout_constraintStart_toStartOf="@+id/textView18"
+                    app:layout_constraintTop_toBottomOf="@+id/textView18" />
+
+                <TextView
+                    android:id="@+id/tvHomeDefense"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="viewStart"
+                    app:layout_constraintStart_toStartOf="@+id/tvHomeGoalKeeper"
+                    app:layout_constraintTop_toTopOf="@+id/textView21"
+                    tools:text="@string/strHomeDefense" />
+
+                <TextView
+                    android:id="@+id/tvAwayDefense"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="viewEnd"
+                    app:layout_constraintEnd_toEndOf="@+id/tvAwayGoalKeeper"
+                    app:layout_constraintTop_toTopOf="@+id/textView21"
+                    tools:text="@string/strAwayDefense" />
+
+                <TextView
+                    android:id="@+id/textView24"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
+                    android:text="@string/strMidfield"
+                    android:textColor="@android:color/holo_green_light"
+                    app:layout_constraintEnd_toEndOf="@+id/textView21"
+                    app:layout_constraintStart_toStartOf="@+id/textView21"
+                    app:layout_constraintTop_toBottomOf="@+id/tvHomeDefense" />
+
+                <TextView
+                    android:id="@+id/tvHomeMidfield"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="viewStart"
+                    app:layout_constraintStart_toStartOf="@+id/tvHomeDefense"
+                    app:layout_constraintTop_toTopOf="@+id/textView24"
+                    tools:text="@string/strHomeMidfield" />
+
+                <TextView
+                    android:id="@+id/tvAwayMidfield"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="viewEnd"
+                    app:layout_constraintEnd_toEndOf="@+id/tvAwayDefense"
+                    app:layout_constraintTop_toTopOf="@+id/textView24"
+                    tools:text="@string/strAwayMidfield" />
+
+                <TextView
+                    android:id="@+id/textView28"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
+                    android:text="@string/strForward"
+                    android:textColor="@android:color/holo_green_light"
+                    app:layout_constraintEnd_toEndOf="@+id/textView24"
+                    app:layout_constraintStart_toStartOf="@+id/textView24"
+                    app:layout_constraintTop_toBottomOf="@+id/tvHomeMidfield" />
+
+                <TextView
+                    android:id="@+id/tvHomeForward"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="viewStart"
+                    app:layout_constraintStart_toStartOf="@+id/tvHomeMidfield"
+                    app:layout_constraintTop_toTopOf="@+id/textView28"
+                    tools:text="@string/strHomeForward" />
+
+                <TextView
+                    android:id="@+id/tvAwayForward"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="viewEnd"
+                    app:layout_constraintEnd_toEndOf="@+id/tvAwayMidfield"
+                    app:layout_constraintTop_toTopOf="@+id/textView28"
+                    tools:text="@string/strAwayForward" />
+
+                <TextView
+                    android:id="@+id/textView31"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
+                    android:text="@string/strSubtituties"
+                    android:textColor="@android:color/holo_green_light"
+                    app:layout_constraintEnd_toEndOf="@+id/textView28"
+                    app:layout_constraintStart_toStartOf="@+id/textView28"
+                    app:layout_constraintTop_toBottomOf="@+id/tvHomeForward" />
+
+                <TextView
+                    android:id="@+id/tvHomeSubtituties"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="viewStart"
+                    app:layout_constraintStart_toStartOf="@+id/tvHomeForward"
+                    app:layout_constraintTop_toTopOf="@+id/textView31"
+                    tools:text="@string/strHomeSubtituties" />
+
+                <TextView
+                    android:id="@+id/tvAwaySubtituties"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="viewEnd"
+                    app:layout_constraintEnd_toEndOf="@+id/tvAwayForward"
+                    app:layout_constraintTop_toTopOf="@+id/textView31"
+                    tools:text="@string/strAwaySubtituties" />
+
+                <ImageView
+                    android:id="@+id/imgHomeBadge"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:contentDescription="@string/imgHomeBadge"
+                    app:layout_constraintBottom_toBottomOf="@+id/textView4"
+                    app:layout_constraintEnd_toEndOf="@+id/tvHomeName"
+                    app:layout_constraintStart_toStartOf="@+id/tvHomeName"
+                    app:layout_constraintTop_toTopOf="@+id/textView4" />
+
+                <ImageView
+                    android:id="@+id/imgAwayBadge"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:contentDescription="@string/imgAwayBadge"
+                    app:layout_constraintBottom_toBottomOf="@+id/textView4"
+                    app:layout_constraintEnd_toEndOf="@+id/tvAwayName"
+                    app:layout_constraintStart_toStartOf="@+id/tvAwayName"
+                    app:layout_constraintTop_toTopOf="@+id/textView4" />
+
+            </android.support.constraint.ConstraintLayout>
+        </ScrollView>
+    </android.support.v4.widget.SwipeRefreshLayout>
+</android.support.constraint.ConstraintLayout>

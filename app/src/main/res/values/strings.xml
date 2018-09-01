@@ -1,0 +1,51 @@
+<resources>
+    <string name="app_name">Football Apps</string>
+    <string name="match">Match</string>
+    <string name="teams">Teams</string>
+    <string name="favorites">Favorites</string>
+    <string name="title_detail_schedule">Match Detail</string>
+    <string name="msg_snackbar_add_fav">Added to Favorite</string>
+    <string name="msg_snackbar_remove_fav">Removed to favorite</string>
+    <string name="strAwayGoals">34\': Kieron Freeman;29\': Billy Sharp;8\': Leon Clarke;</string>
+    <string name="strHomeGoals">34\': Kieron Freeman;29\': Billy Sharp;8\': Leon Clarke;</string>
+    <string name="strShots">Shots</string>
+    <string name="strGoals">Goals</string>
+    <string name="strHomeShots">7</string>
+    <string name="strAwayShots">4</string>
+    <string name="strLineups">Lineups</string>
+    <string name="strGoalKeeper">Goal keeper</string>
+    <string name="strHomeGoalKeeper">Simon Moore</string>
+    <string name="strAwayGoalKeeper">Simon Moore</string>
+    <string name="strDefense">Defense</string>
+    <string name="strHomeDefense">Chris Basham; Richard Stearman; Jack O\'Connell;</string>
+    <string name="strAwayDefense">Chris Basham; Richard Stearman; Jack O\'Connell;</string>
+    <string name="strMidfield">Midfield</string>
+    <string name="strHomeMidfield">Ryan Leonard; Lee Evans; John Fleck; Enda Stevens; Kieron Freeman;</string>
+    <string name="strAwayMidfield">Ryan Leonard; Lee Evans; John Fleck; Enda Stevens; Kieron Freeman;</string>
+    <string name="strForward">Forward</string>
+    <string name="strSubtituties">Subtituties</string>
+    <string name="strVs">vs</string>
+    <string name="imgHomeBadge">HomeBadge</string>
+    <string name="imgAwayBadge">AwayBadge</string>
+    <string name="strAwaySubtituties">Mark Duffy; Daniel Lafferty; Jake Eastwood; Ched Evans; George Baldock; David Brooks; John Lundstram;</string>
+    <string name="strHomeSubtituties">Mark Duffy; Daniel Lafferty; Jake Eastwood; Ched Evans; George Baldock; David Brooks; John Lundstram;</string>
+    <string name="strAwayForward">Leon Clarke; Billy Sharp;</string>
+    <string name="strHomeForward">Leon Clarke; Billy Sharp;</string>
+    <string name="strAwayFormation">4-2-1-2</string>
+    <string name="strAwayName">Man City</string>
+    <string name="strHomeFormation">4-3-3-1</string>
+    <string name="strHomeName">Tottenham</string>
+    <string name="strAwayScore">0</string>
+    <string name="strHomeScore">4</string>
+    <string name="strDateEvent">Min, 03 Mar 2018</string>
+    <string name="title_next">Next</string>
+    <string name="title_prev">Past</string>
+    <array name="league">
+        <item>English Premier League</item> <!-- 4328 -->
+        <item>English League Championship</item> <!-- 4329 -->
+        <item>German Bundesliga</item> <!-- 4331 -->
+        <item>Italian Serie A</item> <!-- 4332 -->
+        <item>French Ligue 1</item> <!-- 43334 -->
+        <item>Spanish La Liga</item> <!-- 4335 -->
+    </array>
+</resources>
