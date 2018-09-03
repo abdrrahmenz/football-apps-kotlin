@@ -6,5 +6,5 @@ interface PrevMatchView {
 
     fun showLoading()
     fun hideLoading()
-    fun showPrevMatch(events: List<Events>)
+    fun showPrevMatch(data: List<Events>)
 }

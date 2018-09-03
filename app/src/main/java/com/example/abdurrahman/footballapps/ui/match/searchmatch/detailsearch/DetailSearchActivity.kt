@@ -2,7 +2,6 @@ package com.example.abdurrahman.footballapps.ui.match.searchmatch.detailsearch
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import android.view.Menu
 import android.view.MenuItem
 import com.example.abdurrahman.footballapps.R
 import com.example.abdurrahman.footballapps.api.ApiRepository
@@ -23,7 +22,6 @@ class DetailSearchActivity : AppCompatActivity(), DetailMatchView {
     private lateinit var event: Event
     private var urlHomeBadge: String? = null
     private var urlAwayBadge: String? = null
-    private var menuItem: Menu? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -63,19 +61,12 @@ class DetailSearchActivity : AppCompatActivity(), DetailMatchView {
         tvAwayName.text = event.teamAwayName
     }
 
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.detail_menu, menu)
-        menuItem = menu
-        return true
-    }
-
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         return when(item?.itemId) {
             android.R.id.home -> {
-                finish()
+                onBackPressed()
                 true
             }
-
             else -> super.onOptionsItemSelected(item)
         }
     }

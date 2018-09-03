@@ -1,6 +1,5 @@
 package com.example.abdurrahman.footballapps.api
 
-import android.net.Uri
 import com.example.abdurrahman.footballapps.BuildConfig
 
 object TheSportDBApi {
@@ -21,17 +20,5 @@ object TheSportDBApi {
 
     fun getTeams(league:String?): String {
         return "$SportsApiUrl/search_all_teams.php?l=$league"
-    }
-
-    fun getTeamDetail(teamId: String?) : String {
-        return Uri.parse(BuildConfig.BASE_URL).buildUpon()
-                .appendPath("api")
-                .appendPath("v1")
-                .appendPath("json")
-                .appendPath(BuildConfig.TSDB_API_KEY)
-                .appendPath("lookupteam.php")
-                .appendQueryParameter("id",teamId)
-                .build()
-                .toString()
     }
 }

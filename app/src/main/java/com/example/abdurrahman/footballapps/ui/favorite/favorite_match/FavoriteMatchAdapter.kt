@@ -1,4 +1,4 @@
-package com.example.abdurrahman.footballapps.ui.match.searchmatch
+package com.example.abdurrahman.footballapps.ui.favorite.favorite_match
 
 import android.annotation.SuppressLint
 import android.graphics.Color
@@ -11,25 +11,25 @@ import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.TextView
 import com.example.abdurrahman.footballapps.R
-import com.example.abdurrahman.footballapps.model.Event
+import com.example.abdurrahman.footballapps.model.Events
 import org.jetbrains.anko.*
 import org.jetbrains.anko.sdk25.coroutines.onClick
 import java.text.SimpleDateFormat
 
-class SearchMatchAdapter(private var events: List<Event>, private val listener: (Event) -> Unit)
-    : RecyclerView.Adapter<SearchMatchViewHolder>() {
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SearchMatchViewHolder {
-        return SearchMatchViewHolder(SearchMatchUI().createView(AnkoContext.create(parent.context, parent)))
+class FavoriteMatchAdapter(private val favorite: List<Events>, private val listener: (Events) -> Unit)
+    : RecyclerView.Adapter<FavoriteViewHolder>(){
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FavoriteViewHolder {
+        return FavoriteViewHolder(FavoriteMatchUI().createView(AnkoContext.create(parent.context,parent)))
     }
 
-    override fun getItemCount(): Int = events.size
+    override fun getItemCount(): Int = favorite.size
 
-    override fun onBindViewHolder(holder: SearchMatchViewHolder, position: Int) {
-        holder.bindItem(events[position], listener)
+    override fun onBindViewHolder(holder: FavoriteViewHolder, position: Int) {
+        holder.bindItem(favorite[position], listener)
     }
 }
 
-class SearchMatchUI : AnkoComponent<ViewGroup> {
+class FavoriteMatchUI : AnkoComponent<ViewGroup> {
     override fun createView(ui: AnkoContext<ViewGroup>): View {
         return with(ui) {
             linearLayout{
@@ -66,7 +66,6 @@ class SearchMatchUI : AnkoComponent<ViewGroup> {
                     textView {
                         id = R.id.tvTeamHomeScore
                         textSize = 18f
-                        visibility = View.GONE
                         typeface = Typeface.DEFAULT_BOLD
                     }.lparams{
                         marginEnd = dip(25)
@@ -83,7 +82,6 @@ class SearchMatchUI : AnkoComponent<ViewGroup> {
                     textView {
                         id = R.id.tvTeamAwayScore
                         textSize = 18f
-                        visibility = View.GONE
                         typeface = Typeface.DEFAULT_BOLD
                     }.lparams{
                         marginStart = dip(25)
@@ -105,22 +103,26 @@ class SearchMatchUI : AnkoComponent<ViewGroup> {
 
 }
 
-class SearchMatchViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+class FavoriteViewHolder(view: View) : RecyclerView.ViewHolder(view) {
     private val tvDate : TextView = view.find(R.id.tvDateEvent)
     private val tvVS : TextView = view.find(R.id.textViewVs)
+    private val tvhomeScore : TextView = view.find(R.id.tvTeamHomeScore)
+    private val tvawayScore : TextView = view.find(R.id.tvTeamAwayScore)
     private val tvhomeTeam : TextView = view.find(R.id.tvTeamHomeName)
     private val tvawayTeam : TextView = view.find(R.id.tvTeamAwayName)
 
     @SuppressLint("SetTextI18n")
-    fun bindItem(event: Event, listener: (Event) -> Unit) {
+    fun bindItem(fav: Events, listener: (Events) -> Unit) {
         val dateFormatServer = SimpleDateFormat("yyyy-MM-dd")
         val dateFormatCustom = SimpleDateFormat("E, dd MMM yyyy")
-        val date = dateFormatServer.parse(event.dateEvent)
+        val date = dateFormatServer.parse(fav.dateEvent)
         val strDate = dateFormatCustom.format(date)
         tvDate.text = strDate
-        tvhomeTeam.text = event.teamHomeName
-        tvawayTeam.text = event.teamAwayName
+        tvhomeScore.text = fav.teamHomeScore
+        tvawayScore.text = fav.teamAwayScore
+        tvhomeTeam.text = fav.teamHomeName
+        tvawayTeam.text = fav.teamAwayName
         tvVS.text = "vs"
-        itemView.onClick { listener(event) }
+        itemView.onClick { listener(fav) }
     }
 }

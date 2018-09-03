@@ -20,8 +20,8 @@ class PrevMatchPresenter(private val view: PrevMatchView,
                 gson.fromJson(apiRepository.doRequest(TheSportDBApi.getPrevMatch(league)),
                         EventsResponse::class.java)
             }
-            view.hideLoading()
             view.showPrevMatch(data.await().events)
+            view.hideLoading()
 
         }
     }

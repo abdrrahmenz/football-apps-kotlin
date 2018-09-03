@@ -21,7 +21,6 @@ import org.jetbrains.anko.recyclerview.v7.recyclerView
 import org.jetbrains.anko.support.v4.ctx
 import org.jetbrains.anko.support.v4.onRefresh
 import org.jetbrains.anko.support.v4.swipeRefreshLayout
-import org.jetbrains.anko.support.v4.toast
 
 class PlayersFragment : Fragment(), AnkoComponent<Context>, PlayersView {
 
@@ -52,7 +51,6 @@ class PlayersFragment : Fragment(), AnkoComponent<Context>, PlayersView {
 
         val bindData = arguments
         idTeams = bindData?.getString(KEY_TEAMS) ?: "idTeams"
-        toast(idTeams)
 
         adapter = PlayersAdapter(players) {
             ctx.startActivity<DetailPlayersActivity>("player_detail" to it)
@@ -117,7 +115,6 @@ class PlayersFragment : Fragment(), AnkoComponent<Context>, PlayersView {
         swipeRefresh.isRefreshing = false
         players.clear()
         players.addAll(player)
-        toast(player.size.toString())
         adapter.notifyDataSetChanged()
     }
 }

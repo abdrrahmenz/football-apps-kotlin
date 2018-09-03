@@ -4,6 +4,7 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import com.example.abdurrahman.footballapps.R
 import com.example.abdurrahman.footballapps.R.id.*
+import com.example.abdurrahman.footballapps.ui.favorite.FavoriteFragment
 import com.example.abdurrahman.footballapps.ui.match.MatchFragment
 import com.example.abdurrahman.footballapps.ui.team.TeamsFragment
 import kotlinx.android.synthetic.main.activity_home.*
@@ -25,7 +26,7 @@ class HomeActivity : AppCompatActivity() {
                     loadTeamsFragment(savedInstanceState)
                 }
                 favorites-> {
-//                    loadFavoritesFragment(savedInstanceState)
+                    loadFavoritesFragment(savedInstanceState)
                 }
 
             }
@@ -48,6 +49,15 @@ class HomeActivity : AppCompatActivity() {
             supportFragmentManager
                     .beginTransaction()
                     .replace(R.id.main_container, TeamsFragment(), TeamsFragment::class.simpleName)
+                    .commit()
+        }
+    }
+
+    private fun loadFavoritesFragment(savedInstanceState: Bundle?) {
+        if (savedInstanceState == null) {
+            supportFragmentManager
+                    .beginTransaction()
+                    .replace(R.id.main_container, FavoriteFragment(), FavoriteFragment::class.simpleName)
                     .commit()
         }
     }

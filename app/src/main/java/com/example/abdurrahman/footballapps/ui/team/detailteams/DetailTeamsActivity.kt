@@ -1,22 +1,30 @@
 package com.example.abdurrahman.footballapps.ui.team.detailteams
 
+import android.database.sqlite.SQLiteConstraintException
 import android.os.Build
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentPagerAdapter
+import android.support.v4.content.ContextCompat
 import android.support.v4.view.ViewPager
 import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
 import com.example.abdurrahman.footballapps.R
 import com.example.abdurrahman.footballapps.R.id.add_to_favorite
+import com.example.abdurrahman.footballapps.database.database
+import com.example.abdurrahman.footballapps.model.Favorite
 import com.example.abdurrahman.footballapps.model.Teams
 import com.example.abdurrahman.footballapps.ui.team.detailteams.overview.OverviewFragment
 import com.example.abdurrahman.footballapps.ui.team.detailteams.players.PlayersFragment
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_detail_teams.*
-import org.jetbrains.anko.toast
+import org.jetbrains.anko.db.classParser
+import org.jetbrains.anko.db.delete
+import org.jetbrains.anko.db.insert
+import org.jetbrains.anko.db.select
+import org.jetbrains.anko.design.snackbar
 import java.util.ArrayList
 
 class DetailTeamsActivity : AppCompatActivity() {
@@ -24,11 +32,11 @@ class DetailTeamsActivity : AppCompatActivity() {
     private lateinit var teams: Teams
     private var menuItem: Menu? = null
 
+    private var isFavorite: Boolean = false
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail_teams)
-
-        teams = intent.getParcelableExtra("teams_detail")
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             detail_teams_toolbar.navigationIcon = getDrawable(R.drawable.ic_arrow_back_24dp)
@@ -36,6 +44,10 @@ class DetailTeamsActivity : AppCompatActivity() {
         setSupportActionBar(detail_teams_toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.title = ""
+
+        teams = intent.getParcelableExtra("teams_detail")
+
+        favoriteState()
 
         setupViewPager(detail_teams_viewpager)
         detail_teams_tabs.setupWithViewPager(detail_teams_viewpager)
@@ -47,9 +59,56 @@ class DetailTeamsActivity : AppCompatActivity() {
 
     }
 
+    private fun setFavorite() {
+        if (isFavorite)
+            menuItem?.getItem(0)?.icon = ContextCompat.getDrawable(this, R.drawable.ic_added_to_favorites)
+        else
+            menuItem?.getItem(0)?.icon = ContextCompat.getDrawable(this, R.drawable.ic_add_to_favorites)
+    }
+
+    private fun favoriteState(){
+        database.use {
+            val result = select(Favorite.TABLE_FAVORITE_TEAMS)
+                    .whereArgs("(TEAMS_ID = {id})",
+                            "id" to teams.teamId.toString())
+            val favorite = result.parseList(classParser<Teams>())
+            if (!favorite.isEmpty()) isFavorite = true
+        }
+    }
+
+    private fun addToFavorite() {
+        try {
+            database.use {
+                insert(Favorite.TABLE_FAVORITE_TEAMS,
+                        Favorite.TEAMS_ID to teams.teamId,
+                        Favorite.TEAM_NAME to teams.teamName,
+                        Favorite.TEAM_DESC to teams.strDesc,
+                        Favorite.TEAM_YEAR to teams.intYear,
+                        Favorite.TEAM_STADIUM to teams.strStadium,
+                        Favorite.TEAM_BADGE to teams.teamBadge)
+            }
+            snackbar(maincontent, getString(R.string.msg_snackbar_add_fav)).show()
+        }catch (e: SQLiteConstraintException) {
+            snackbar(maincontent, e.localizedMessage).show()
+        }
+    }
+
+    private fun removeFromFavorite(){
+        try {
+            database.use {
+                delete(Favorite.TABLE_FAVORITE_TEAMS,"(TEAMS_ID = {id})",
+                        "id" to teams.teamId.toString())
+            }
+            snackbar(maincontent, getString(R.string.msg_snackbar_remove_fav)).show()
+        } catch (e: SQLiteConstraintException){
+            snackbar(maincontent, e.localizedMessage).show()
+        }
+    }
+
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.detail_menu, menu)
         menuItem = menu
+        setFavorite()
         return true
     }
 
@@ -60,7 +119,11 @@ class DetailTeamsActivity : AppCompatActivity() {
                 true
             }
             add_to_favorite -> {
-                toast("add favorites :)")
+                if (isFavorite) removeFromFavorite() else addToFavorite()
+
+                isFavorite = !isFavorite
+                setFavorite()
+
                 true
             }
             else -> super.onOptionsItemSelected(item)

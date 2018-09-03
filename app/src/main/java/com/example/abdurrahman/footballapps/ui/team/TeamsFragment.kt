@@ -25,7 +25,6 @@ import org.jetbrains.anko.*
 import org.jetbrains.anko.recyclerview.v7.recyclerView
 import org.jetbrains.anko.sdk25.coroutines.onQueryTextListener
 import org.jetbrains.anko.support.v4.swipeRefreshLayout
-import org.jetbrains.anko.support.v4.toast
 
 class TeamsFragment : Fragment(), AnkoComponent<Context>, TeamsView {
 

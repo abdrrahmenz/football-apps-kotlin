@@ -27,16 +27,17 @@ class PrevMatchPresenterTest {
         MockitoAnnotations.initMocks(this)
         presenter = PrevMatchPresenter(view, apiRepository, gson, TestContextProvider())
     }
-
     @Test
     fun getPrevMatchList() {
         val event: MutableList<Events> = mutableListOf()
         val response = EventsResponse(event)
+        var leagueName: String? = null
 
-        `when`(gson.fromJson(apiRepository.doRequest(TheSportDBApi.getPrevMatch()),
+        `when`(gson.fromJson(apiRepository.doRequest(TheSportDBApi.getPrevMatch(leagueName)),
                 EventsResponse::class.java)).thenReturn(response)
 
-        presenter.getPrevMatchList()
+        leagueName = "English Premier League"
+        presenter.getPrevMatchList(leagueName)
 
         verify(view).showLoading()
         verify(view).showPrevMatch(event)

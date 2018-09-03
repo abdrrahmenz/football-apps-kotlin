@@ -5,5 +5,5 @@ import com.example.abdurrahman.footballapps.model.Event
 interface SearchMatchView {
     fun showLoading()
     fun hideLoading()
-    fun showListMatch(events: List<Event>)
+    fun showListMatch(event: List<Event>)
 }

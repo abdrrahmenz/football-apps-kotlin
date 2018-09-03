@@ -48,9 +48,9 @@ class SearchMatchActivity : AppCompatActivity(), SearchMatchView {
         progressBarr.visibility = View.GONE
     }
 
-    override fun showListMatch(events: List<Event>) {
+    override fun showListMatch(event: List<Event>) {
         searchEvent.clear()
-        searchEvent.addAll(events)
+        searchEvent.addAll(event)
         adapter.notifyDataSetChanged()
     }
 }

@@ -22,7 +22,6 @@ import org.jetbrains.anko.recyclerview.v7.recyclerView
 import org.jetbrains.anko.support.v4.ctx
 import org.jetbrains.anko.support.v4.onRefresh
 import org.jetbrains.anko.support.v4.swipeRefreshLayout
-import org.jetbrains.anko.support.v4.toast
 
 class NextMatchFragment : Fragment(), AnkoComponent<Context>, NextMatchView {
     private var events: MutableList<Events> = mutableListOf()

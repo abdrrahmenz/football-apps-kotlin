@@ -21,8 +21,6 @@ class NextMatchPresenter(private val view: NextMatchView,
                 gson.fromJson(apiRepository.doRequest(TheSportDBApi.getNextMatch(league)),
                         EventsResponse::class.java)
             }
-
-            println("Response => ${data.await().events}")
             view.hideLoading()
             view.showNextMatch(data.await().events)
         }

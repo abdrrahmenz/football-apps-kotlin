@@ -34,11 +34,13 @@ class NextMatchPresenterTest {
     fun getNextMatchList() {
         val event: MutableList<Events> = mutableListOf()
         val response = EventsResponse(event)
+        var leagueName: String? = null
 
-        `when`(gson.fromJson(apiRepository.doRequest(TheSportDBApi.getNextMatch()),
+        `when`(gson.fromJson(apiRepository.doRequest(TheSportDBApi.getNextMatch(leagueName)),
                 EventsResponse::class.java)).thenReturn(response)
 
-        presenter.getNextMatchList()
+        leagueName = "English Premier League"
+        presenter.getNextMatchList(leagueName)
 
         verify(view).showLoading()
         verify(view).showNextMatch(event)
