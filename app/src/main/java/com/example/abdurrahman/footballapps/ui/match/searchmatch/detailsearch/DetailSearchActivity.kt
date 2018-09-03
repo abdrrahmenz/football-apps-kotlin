@@ -1,4 +1,4 @@
-package com.example.abdurrahman.footballapps.ui.match.detailmatch
+package com.example.abdurrahman.footballapps.ui.match.searchmatch.detailsearch
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
@@ -8,6 +8,8 @@ import com.example.abdurrahman.footballapps.R
 import com.example.abdurrahman.footballapps.api.ApiRepository
 import com.example.abdurrahman.footballapps.model.Event
 import com.example.abdurrahman.footballapps.model.Teams
+import com.example.abdurrahman.footballapps.ui.match.detailmatch.DetailMatchPresenter
+import com.example.abdurrahman.footballapps.ui.match.detailmatch.DetailMatchView
 import com.google.gson.Gson
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_detail_match.*

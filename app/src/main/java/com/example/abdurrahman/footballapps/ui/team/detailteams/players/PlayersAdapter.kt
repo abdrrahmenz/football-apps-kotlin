@@ -1,6 +1,7 @@
 package com.example.abdurrahman.footballapps.ui.team.detailteams.players
 
 import android.support.v7.widget.RecyclerView
+import android.text.TextUtils
 import android.view.Gravity
 import android.view.View
 import android.view.ViewGroup
@@ -46,7 +47,10 @@ class PlayerUI : AnkoComponent<ViewGroup> {
                 textView {
                     id = R.id.player_name
                     textSize = 16f
+                    ellipsize = TextUtils.TruncateAt.END
+                    maxLines = 1
                 }.lparams {
+                    width = dip(150)
                     margin = dip(15)
                 }
 
@@ -55,7 +59,6 @@ class PlayerUI : AnkoComponent<ViewGroup> {
                     textSize = 16f
                 }.lparams {
                     margin = dip(15)
-                    gravity = Gravity.END
                 }
             }
         }

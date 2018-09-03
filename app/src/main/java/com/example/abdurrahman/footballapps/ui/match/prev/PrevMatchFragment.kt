@@ -78,7 +78,6 @@ class PrevMatchFragment : Fragment(), AnkoComponent<Context>, PrevMatchView {
         
         adapter = PrevMatchAdapter(events) {
             ctx.startActivity<DetailMatchActivity>("detail" to it)
-            toast(it.teamHomeName.toString())
         }
         listPrevMatch.adapter = adapter
         val request = ApiRepository()

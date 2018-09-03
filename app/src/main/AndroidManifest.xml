@@ -18,11 +18,18 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.match.detailmatch.DetailMatchActivity"/>
-        <activity android:name=".ui.match.detailmatch.DetailSearchActivity"/>
         <activity android:name=".ui.match.searchmatch.SearchMatchActivity"/>
+
+        <activity android:name=".ui.match.detailmatch.DetailMatchActivity"
+            android:parentActivityName=".ui.home.HomeActivity"/>
+
+        <activity android:name=".ui.match.searchmatch.detailsearch.DetailSearchActivity"
+            android:parentActivityName=".ui.home.HomeActivity"/>
+
         <activity android:name=".ui.team.detailteams.DetailTeamsActivity"
-            android:theme="@style/NoActionBar"></activity>
+            android:theme="@style/NoActionBar"/>
+
+        <activity android:name=".ui.team.detailteams.players.detailplayers.DetailPlayersActivity"/>
     </application>
 
 </manifest>

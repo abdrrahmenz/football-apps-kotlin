@@ -5,6 +5,7 @@ import android.graphics.Color
 import android.graphics.Typeface
 import android.graphics.drawable.ColorDrawable
 import android.support.v7.widget.RecyclerView
+import android.text.TextUtils
 import android.view.Gravity
 import android.view.View
 import android.view.ViewGroup
@@ -59,6 +60,8 @@ class NextMatchUI : AnkoComponent<ViewGroup> {
                     textView {
                         id = R.id.tvTeamHomeName
                         textSize = 18f
+                        ellipsize = TextUtils.TruncateAt.END
+                        maxLines = 1
                     }.lparams{
                         marginEnd = dip(25)
                         this.leftOf(R.id.tvTeamHomeScore)
@@ -94,6 +97,8 @@ class NextMatchUI : AnkoComponent<ViewGroup> {
                     textView {
                         id = R.id.tvTeamAwayName
                         textSize = 18f
+                        ellipsize = TextUtils.TruncateAt.END
+                        maxLines = 1
                     }.lparams{
                         marginStart = dip(25)
                         this.rightOf(R.id.tvTeamAwayScore)

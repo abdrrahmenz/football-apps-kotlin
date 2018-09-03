@@ -7,7 +7,7 @@ import android.view.*
 import com.example.abdurrahman.footballapps.R
 import com.example.abdurrahman.footballapps.api.ApiRepository
 import com.example.abdurrahman.footballapps.model.Event
-import com.example.abdurrahman.footballapps.ui.match.detailmatch.DetailSearchActivity
+import com.example.abdurrahman.footballapps.ui.match.searchmatch.detailsearch.DetailSearchActivity
 import com.google.gson.Gson
 import kotlinx.android.synthetic.main.activity_search_match.*
 import org.jetbrains.anko.*

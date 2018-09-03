@@ -77,7 +77,6 @@ class NextMatchFragment : Fragment(), AnkoComponent<Context>, NextMatchView {
 
         adapter = NextMatchAdapter(events) {
             ctx.startActivity<DetailMatchActivity>("detail" to it)
-            toast(it.teamHomeName.toString())
         }
         listNextMatch.adapter = adapter
         val request = ApiRepository()

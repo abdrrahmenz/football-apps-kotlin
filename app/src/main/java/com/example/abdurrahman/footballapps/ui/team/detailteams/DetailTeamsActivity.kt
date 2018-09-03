@@ -1,22 +1,28 @@
 package com.example.abdurrahman.footballapps.ui.team.detailteams
 
+import android.os.Build
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentPagerAdapter
 import android.support.v4.view.ViewPager
 import android.support.v7.app.AppCompatActivity
+import android.view.Menu
+import android.view.MenuItem
 import com.example.abdurrahman.footballapps.R
+import com.example.abdurrahman.footballapps.R.id.add_to_favorite
 import com.example.abdurrahman.footballapps.model.Teams
 import com.example.abdurrahman.footballapps.ui.team.detailteams.overview.OverviewFragment
 import com.example.abdurrahman.footballapps.ui.team.detailteams.players.PlayersFragment
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_detail_teams.*
+import org.jetbrains.anko.toast
 import java.util.ArrayList
 
 class DetailTeamsActivity : AppCompatActivity() {
 
     private lateinit var teams: Teams
+    private var menuItem: Menu? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,6 +30,9 @@ class DetailTeamsActivity : AppCompatActivity() {
 
         teams = intent.getParcelableExtra("teams_detail")
 
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            detail_teams_toolbar.navigationIcon = getDrawable(R.drawable.ic_arrow_back_24dp)
+        }
         setSupportActionBar(detail_teams_toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.title = ""
@@ -36,6 +45,26 @@ class DetailTeamsActivity : AppCompatActivity() {
         detail_teams_year.text = teams.intYear
         detail_teams_stadium.text = teams.strStadium
 
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.detail_menu, menu)
+        menuItem = menu
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        return when (item?.itemId) {
+            android.R.id.home -> {
+                onBackPressed()
+                true
+            }
+            add_to_favorite -> {
+                toast("add favorites :)")
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
     }
 
     fun setupViewPager(viewPager: ViewPager){

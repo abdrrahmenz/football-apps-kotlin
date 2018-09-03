@@ -12,7 +12,7 @@ class PlayerPresenter(private val view: PlayersView,
                       private val apiRepository: ApiRepository,
                       private val gson: Gson,
                       private val context: CoroutineContextProvider = CoroutineContextProvider()){
-    fun getTeamList(idTeam: String?) {
+    fun getPlayerList(idTeam: String?) {
         view.showLoading()
         async(context.main) {
             val data = bg {

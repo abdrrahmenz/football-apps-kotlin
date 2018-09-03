@@ -40,6 +40,8 @@
     <string name="strDateEvent">Min, 03 Mar 2018</string>
     <string name="title_next">Next</string>
     <string name="title_prev">Past</string>
+    <string name="weight_kg">Weight (Kg)</string>
+    <string name="height_m">Height (m)</string>
     <array name="league">
         <item>English Premier League</item> <!-- 4328 -->
         <item>English League Championship</item> <!-- 4329 -->

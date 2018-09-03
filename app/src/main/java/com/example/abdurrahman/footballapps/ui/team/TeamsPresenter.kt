@@ -19,8 +19,6 @@ class TeamsPresenter(private val view: TeamsView,
                 gson.fromJson(apiRepository.doRequest(TheSportDBApi.getTeams(league)),
                         TeamsResponse::class.java)
             }
-
-            println("Response => ${data.await().teams}")
             view.hideLoading()
             view.showTeamList(data.await().teams)
 
@@ -34,7 +32,6 @@ class TeamsPresenter(private val view: TeamsView,
                 gson.fromJson(apiRepository.doRequest(TheSportDBApi.getSearchTeam(teamName)),
                         TeamsResponse::class.java)
             }
-            println("Response => ${data.await().teams}")
             view.hideLoading()
             view.showTeamList(data.await().teams)
         }

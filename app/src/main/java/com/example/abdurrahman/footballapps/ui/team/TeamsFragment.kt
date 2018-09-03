@@ -146,7 +146,6 @@ class TeamsFragment : Fragment(), AnkoComponent<Context>, TeamsView {
             }
         }
         super.onCreateOptionsMenu(menu, inflater)
-
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
@@ -154,7 +153,6 @@ class TeamsFragment : Fragment(), AnkoComponent<Context>, TeamsView {
             search_team -> {
                 true
             }
-
             else -> super.onOptionsItemSelected(item)
         }
     }

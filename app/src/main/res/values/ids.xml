@@ -17,4 +17,5 @@
     <item name="player_image" type="id" />
     <item name="player_name" type="id" />
     <item name="player_position" type="id" />
+    <item name="listPlayer" type="id" />
 </resources>

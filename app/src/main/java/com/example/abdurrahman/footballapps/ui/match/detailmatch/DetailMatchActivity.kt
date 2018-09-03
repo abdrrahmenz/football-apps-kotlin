@@ -14,6 +14,7 @@ import com.google.gson.Gson
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_detail_match.*
 import org.jetbrains.anko.support.v4.onRefresh
+import org.jetbrains.anko.toast
 import java.text.SimpleDateFormat
 
 class DetailMatchActivity : AppCompatActivity(), DetailMatchView {
@@ -23,8 +24,8 @@ class DetailMatchActivity : AppCompatActivity(), DetailMatchView {
     private var urlHomeBadge: String? = null
     private var urlAwayBadge: String? = null
     private var menuItem: Menu? = null
+//    private var isFavorite: Boolean = false
 
-    //    private var isFavorite: Boolean = false
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail_match)
@@ -92,10 +93,13 @@ class DetailMatchActivity : AppCompatActivity(), DetailMatchView {
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         return when (item?.itemId) {
             android.R.id.home -> {
-                finish()
+                onBackPressed()
                 true
             }
-
+            R.id.add_to_favorite -> {
+                toast("add favorites :)")
+                true
+            }
             else -> super.onOptionsItemSelected(item)
         }
     }
