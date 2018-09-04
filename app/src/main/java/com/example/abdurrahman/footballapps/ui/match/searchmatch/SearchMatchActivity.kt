@@ -25,15 +25,16 @@ class SearchMatchActivity : AppCompatActivity(), SearchMatchView {
         supportActionBar?.hide()
 
         searchView.onActionViewExpanded()
-        val request = ApiRepository()
-        val gson = Gson()
-        presenter = SearchMatchPresenter(this,request, gson)
         searchView.onQueryTextListener {
             onQueryTextChange { it ->
                 presenter.getSearchMatchList(it)
                 true
-             }
+            }
         }
+        val request = ApiRepository()
+        val gson = Gson()
+        presenter = SearchMatchPresenter(this,request, gson)
+        presenter.getSearchMatchList("")
         adapter = SearchMatchAdapter(searchEvent) {
             ctx.startActivity<DetailSearchActivity>("detail_search" to it)
         }

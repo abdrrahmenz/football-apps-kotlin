@@ -130,7 +130,6 @@ class TeamsFragment : Fragment(), AnkoComponent<Context>, TeamsView {
 
     override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {
         menu?.clear()
-        menu?.findItem(R.id.search_match)?.isVisible = false
         inflater?.inflate(R.menu.search_team_menu, menu)
         val searchManager = activity?.getSystemService(Context.SEARCH_SERVICE) as SearchManager
         val searchItem = menu?.findItem(R.id.search_team)

@@ -19,7 +19,6 @@
         <SearchView
             android:id="@+id/searchView"
             android:layout_marginTop="6dp"
-            android:iconifiedByDefault="false"
             android:queryBackground="@android:color/white"
             android:searchIcon="@drawable/ic_search"
             android:layout_width="match_parent"

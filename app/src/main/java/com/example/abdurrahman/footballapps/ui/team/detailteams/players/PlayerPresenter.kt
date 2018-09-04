@@ -19,8 +19,6 @@ class PlayerPresenter(private val view: PlayersView,
                 gson.fromJson(apiRepository.doRequest(TheSportDBApi.getPlayers(idTeam)),
                         PlayerResponse::class.java)
             }
-
-            println("Response => ${data.await().player}")
             view.hideLoading()
             view.showPlayerList(data.await().player)
 

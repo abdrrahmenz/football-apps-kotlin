@@ -64,7 +64,7 @@ class FavoriteFragment : Fragment(), AnkoComponent<Context>{
             }
 
             myViewPager = viewPager {
-                id = R.id.viewpager
+                id = R.id.viewpagerFavorite
             }.lparams(matchParent, matchParent)
             (myViewPager.layoutParams as CoordinatorLayout.LayoutParams).behavior = AppBarLayout.ScrollingViewBehavior()
         }

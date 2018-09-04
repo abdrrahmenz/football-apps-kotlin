@@ -83,7 +83,7 @@ class FavoriteTeamFragment : Fragment(), AnkoComponent<Context> {
                     lparams (width = matchParent, height = wrapContent)
 
                     listFavoriteTeams = recyclerView {
-                        id = R.id.listPrevMatch
+                        id = R.id.listFavoriteTeams
                         lparams (width = matchParent, height = wrapContent)
                         layoutManager = LinearLayoutManager(ctx)
                     }

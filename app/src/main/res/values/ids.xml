@@ -18,4 +18,8 @@
     <item name="player_name" type="id" />
     <item name="player_position" type="id" />
     <item name="listPlayer" type="id" />
+    <item name="tabMatch" type="id" />
+    <item name="listFavoriteTeams" type="id" />
+    <item name="listFavoriteMatch" type="id" />
+    <item name="viewpagerFavorite" type="id" />
 </resources>

@@ -57,6 +57,7 @@ class MatchFragment : Fragment(), AnkoComponent<Context>{
 
 
                 myTabLayout = themedTabLayout(R.style.ThemeOverlay_AppCompat_Dark) {
+                    id = R.id.tabMatch
                     lparams(matchParent, wrapContent){
                     }
                 }
@@ -82,7 +83,7 @@ class MatchFragment : Fragment(), AnkoComponent<Context>{
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         return when (item?.itemId) {
-            R.id.search_main -> {
+            R.id.search_match -> {
                 startActivity<SearchMatchActivity>()
                 true
             }
