@@ -31,9 +31,15 @@ import java.text.SimpleDateFormat
 class DetailMatchActivity : AppCompatActivity(), DetailMatchView {
     private lateinit var presenter: DetailMatchPresenter
 
-    private lateinit var events: Events
+    private var events: Events? = null
     private var urlHomeBadge: String? = null
     private var urlAwayBadge: String? = null
+    private var idEvent: String? = null
+    private var idHomeTeam: String? = null
+    private var idAwayTeam: String? = null
+    private var teamHomeName: String? = null
+    private var teamAwayName: String? = null
+    private var dateEvent: String? = null
     private var menuItem: Menu? = null
     private var isFavorite: Boolean = false
 
@@ -45,25 +51,57 @@ class DetailMatchActivity : AppCompatActivity(), DetailMatchView {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         events = intent.getParcelableExtra("detail")
+        idEvent = intent.getStringExtra("idEvent")
+        idHomeTeam = intent.getStringExtra("idHomeTeam")
+        idAwayTeam = intent.getStringExtra("idAwayTeam")
+        teamHomeName = intent.getStringExtra("teamHomeName")
+        teamAwayName = intent.getStringExtra("teamAwayName")
+        dateEvent = intent.getStringExtra("dateEvent")
 
         favoriteState()
+        favoriteStateSearch()
 
         val request = ApiRepository()
         val gson = Gson()
 
         presenter = DetailMatchPresenter(this, request, gson)
-        presenter.getHomeBadgeLogo(events.idHomeTeam)
-        presenter.getAwayBadgeLogo(events.idAwayTeam)
+        presenter.getHomeBadgeLogo(events?.idHomeTeam ?: idHomeTeam)
+        presenter.getAwayBadgeLogo(events?.idAwayTeam ?: idAwayTeam)
 
         swipeRefresh.setColorSchemeResources(colorAccent,
                 android.R.color.holo_green_light,
                 android.R.color.holo_orange_light,
                 android.R.color.holo_red_light)
         swipeRefresh.onRefresh {
-            presenter.getHomeBadgeLogo(events.idHomeTeam)
-            presenter.getAwayBadgeLogo(events.idAwayTeam)
+            presenter.getHomeBadgeLogo(events?.idHomeTeam ?: idHomeTeam)
+            presenter.getAwayBadgeLogo(events?.idAwayTeam ?: idAwayTeam)
         }
-        initEventsViews(events)
+        val dateFormatServer = SimpleDateFormat("yyyy-MM-dd")
+        val dateFormatCustom = SimpleDateFormat("E, dd MMM yyyy")
+        val date = dateFormatServer.parse(events?.dateEvent ?: dateEvent)
+        val strDate = dateFormatCustom.format(date)
+
+        tvDateEvent.text = strDate
+        tvAwayScore.text = events?.teamAwayScore
+        tvHomeScore.text = events?.teamHomeScore
+        tvHomeName.text = events?.teamHomeName ?: teamHomeName
+        tvAwayName.text = events?.teamAwayName ?: teamAwayName
+        tvHomeFormation.text = events?.strHomeFormation
+        tvAwayFormation.text = events?.strAwayFormation
+        tvHomeGoalsDetail.text = events?.strHomeGoalDetails
+        tvAwayGoalsDetail.text = events?.strAwayGoalDetails
+        tvHomeShots.text = events?.intHomeShots
+        tvAwayShots.text = events?.intAwayShots
+        tvHomeGoalKeeper.text = events?.strHomeLineupGoalkeeper
+        tvAwayGoalKeeper.text = events?.strAwayLineupGoalkeeper
+        tvHomeDefense.text = events?.strHomeLineupDefense
+        tvAwayDefense.text = events?.strAwayLineupDefense
+        tvHomeMidfield.text = events?.strHomeLineupMidfield
+        tvAwayMidfield.text = events?.strAwayLineupMidfield
+        tvHomeForward.text = events?.strHomeLineupForward
+        tvAwayForward.text = events?.strAwayLineupForward
+        tvHomeSubtituties.text = events?.strHomeLineupSubstitutes
+        tvAwaySubtituties.text = events?.strAwayLineupSubstitutes
     }
 
     private fun setFavorite() {
@@ -77,7 +115,7 @@ class DetailMatchActivity : AppCompatActivity(), DetailMatchView {
         database.use {
             val result = select(Favorite.TABLE_FAVORITE_MATCH)
                     .whereArgs("(EVENT_ID = {id})",
-                            "id" to events.idEvent.toString())
+                            "id" to events?.idEvent.toString())
             val favorite = result.parseList(classParser<Events>())
             if (!favorite.isEmpty()) isFavorite = true
         }
@@ -87,31 +125,31 @@ class DetailMatchActivity : AppCompatActivity(), DetailMatchView {
         try {
             database.use {
                 insert(Favorite.TABLE_FAVORITE_MATCH,
-                        Favorite.EVENT_ID to events.idEvent,
-                        Favorite.TEAM_HOME_ID to events.idHomeTeam,
-                        Favorite.TEAM_AWAY_ID to events.idAwayTeam,
-                        Favorite.TEAM_HOME_NAME to events.teamHomeName,
-                        Favorite.TEAM_AWAY_NAME to events.teamAwayName,
-                        Favorite.TEAM_HOME_SCORE to events.teamHomeScore,
-                        Favorite.TEAM_AWAY_SCORE to events.teamAwayScore,
-                        Favorite.TEAM_HOME_GOAL to events.strHomeGoalDetails,
-                        Favorite.TEAM_AWAY_GOAL to events.strAwayGoalDetails,
-                        Favorite.TEAM_HOME_SHOTS to events.intHomeShots,
-                        Favorite.TEAM_AWAY_SHOTS to events.intAwayShots,
-                        Favorite.TEAM_HOME_GOALKEEPER to events.strHomeLineupGoalkeeper,
-                        Favorite.TEAM_AWAY_GOALKEEPER to events.strAwayLineupGoalkeeper,
-                        Favorite.TEAM_HOME_DEFENSE to events.strHomeLineupDefense,
-                        Favorite.TEAM_AWAY_DEFENSE to events.strAwayLineupDefense,
-                        Favorite.TEAM_HOME_MIDFIELD to events.strHomeLineupMidfield,
-                        Favorite.TEAM_AWAY_MIDFIELD to events.strAwayLineupMidfield,
-                        Favorite.TEAM_HOME_FORWARD to events.strHomeLineupForward,
-                        Favorite.TEAM_AWAY_FORWARD to events.strAwayLineupForward,
-                        Favorite.TEAM_HOME_SUBTITUTIS to events.strHomeLineupSubstitutes,
-                        Favorite.TEAM_AWAY_SUBTITUTIS to events.strAwayLineupSubstitutes,
-                        Favorite.TEAM_HOME_FORMATION to events.strHomeFormation,
-                        Favorite.TEAM_AWAY_FORMATION to events.strAwayFormation,
-                        Favorite.TEAM_BADGE to events.teamBadge,
-                        Favorite.TEAM_DATE_EVENT to events.dateEvent)
+                        Favorite.EVENT_ID to events?.idEvent,
+                        Favorite.TEAM_HOME_ID to events?.idHomeTeam,
+                        Favorite.TEAM_AWAY_ID to events?.idAwayTeam,
+                        Favorite.TEAM_HOME_NAME to events?.teamHomeName,
+                        Favorite.TEAM_AWAY_NAME to events?.teamAwayName,
+                        Favorite.TEAM_HOME_SCORE to events?.teamHomeScore,
+                        Favorite.TEAM_AWAY_SCORE to events?.teamAwayScore,
+                        Favorite.TEAM_HOME_GOAL to events?.strHomeGoalDetails,
+                        Favorite.TEAM_AWAY_GOAL to events?.strAwayGoalDetails,
+                        Favorite.TEAM_HOME_SHOTS to events?.intHomeShots,
+                        Favorite.TEAM_AWAY_SHOTS to events?.intAwayShots,
+                        Favorite.TEAM_HOME_GOALKEEPER to events?.strHomeLineupGoalkeeper,
+                        Favorite.TEAM_AWAY_GOALKEEPER to events?.strAwayLineupGoalkeeper,
+                        Favorite.TEAM_HOME_DEFENSE to events?.strHomeLineupDefense,
+                        Favorite.TEAM_AWAY_DEFENSE to events?.strAwayLineupDefense,
+                        Favorite.TEAM_HOME_MIDFIELD to events?.strHomeLineupMidfield,
+                        Favorite.TEAM_AWAY_MIDFIELD to events?.strAwayLineupMidfield,
+                        Favorite.TEAM_HOME_FORWARD to events?.strHomeLineupForward,
+                        Favorite.TEAM_AWAY_FORWARD to events?.strAwayLineupForward,
+                        Favorite.TEAM_HOME_SUBTITUTIS to events?.strHomeLineupSubstitutes,
+                        Favorite.TEAM_AWAY_SUBTITUTIS to events?.strAwayLineupSubstitutes,
+                        Favorite.TEAM_HOME_FORMATION to events?.strHomeFormation,
+                        Favorite.TEAM_AWAY_FORMATION to events?.strAwayFormation,
+                        Favorite.TEAM_BADGE to events?.teamBadge,
+                        Favorite.TEAM_DATE_EVENT to events?.dateEvent)
             }
             snackbar(swipeRefresh, getString(R.string.msg_snackbar_add_fav)).show()
         }catch (e: SQLiteConstraintException) {
@@ -123,7 +161,65 @@ class DetailMatchActivity : AppCompatActivity(), DetailMatchView {
         try {
             database.use {
                 delete(Favorite.TABLE_FAVORITE_MATCH,"(EVENT_ID = {id})",
-                        "id" to events.idEvent.toString())
+                        "id" to events?.idEvent.toString())
+            }
+            snackbar(swipeRefresh, getString(R.string.msg_snackbar_remove_fav)).show()
+        } catch (e: SQLiteConstraintException){
+            snackbar(swipeRefresh, e.localizedMessage).show()
+        }
+    }
+
+    private fun favoriteStateSearch(){
+        database.use {
+            val result = select(Favorite.TABLE_FAVORITE_MATCH)
+                    .whereArgs("(EVENT_ID = {id})",
+                            "id" to idEvent.toString())
+            val favorite = result.parseList(classParser<Events>())
+            if (!favorite.isEmpty()) isFavorite = true
+        }
+    }
+
+    private fun addToFavoriteSearch(){
+        try {
+            database.use {
+                insert(Favorite.TABLE_FAVORITE_MATCH,
+                        Favorite.EVENT_ID to idEvent,
+                        Favorite.TEAM_HOME_ID to idHomeTeam,
+                        Favorite.TEAM_AWAY_ID to idAwayTeam,
+                        Favorite.TEAM_HOME_NAME to teamHomeName,
+                        Favorite.TEAM_AWAY_NAME to teamAwayName,
+                        Favorite.TEAM_HOME_SCORE to "",
+                        Favorite.TEAM_AWAY_SCORE to "",
+                        Favorite.TEAM_HOME_GOAL to "",
+                        Favorite.TEAM_AWAY_GOAL to "",
+                        Favorite.TEAM_HOME_SHOTS to "",
+                        Favorite.TEAM_AWAY_SHOTS to "",
+                        Favorite.TEAM_HOME_GOALKEEPER to "",
+                        Favorite.TEAM_AWAY_GOALKEEPER to "",
+                        Favorite.TEAM_HOME_DEFENSE to "",
+                        Favorite.TEAM_AWAY_DEFENSE to "",
+                        Favorite.TEAM_HOME_MIDFIELD to "",
+                        Favorite.TEAM_AWAY_MIDFIELD to "",
+                        Favorite.TEAM_HOME_FORWARD to "",
+                        Favorite.TEAM_AWAY_FORWARD to "",
+                        Favorite.TEAM_HOME_SUBTITUTIS to "",
+                        Favorite.TEAM_AWAY_SUBTITUTIS to "",
+                        Favorite.TEAM_HOME_FORMATION to "",
+                        Favorite.TEAM_AWAY_FORMATION to "",
+                        Favorite.TEAM_BADGE to "",
+                        Favorite.TEAM_DATE_EVENT to dateEvent)
+            }
+            snackbar(swipeRefresh, getString(R.string.msg_snackbar_add_fav)).show()
+        }catch (e: SQLiteConstraintException) {
+            snackbar(swipeRefresh, e.localizedMessage).show()
+        }
+    }
+
+    private fun removeFromFavoriteSearch(){
+        try {
+            database.use {
+                delete(Favorite.TABLE_FAVORITE_MATCH,"(EVENT_ID = {id})",
+                        "id" to idEvent.toString())
             }
             snackbar(swipeRefresh, getString(R.string.msg_snackbar_remove_fav)).show()
         } catch (e: SQLiteConstraintException){
@@ -132,9 +228,9 @@ class DetailMatchActivity : AppCompatActivity(), DetailMatchView {
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(detail_menu, menu)
-        menuItem = menu
-        setFavorite()
+            menuInflater.inflate(detail_menu, menu)
+            menuItem = menu
+            setFavorite()
         return true
     }
 
@@ -145,10 +241,15 @@ class DetailMatchActivity : AppCompatActivity(), DetailMatchView {
                 true
             }
             add_to_favorite -> {
-                if (isFavorite) removeFromFavorite() else addToFavorite()
-
-                isFavorite = !isFavorite
-                setFavorite()
+                if (idEvent.isNullOrBlank()) {
+                    if (isFavorite) removeFromFavorite() else addToFavorite()
+                    isFavorite = !isFavorite
+                    setFavorite()
+                }else{
+                    if (isFavorite) removeFromFavoriteSearch() else addToFavoriteSearch()
+                    isFavorite = !isFavorite
+                    setFavorite()
+                }
 
                 true
             }
@@ -170,34 +271,5 @@ class DetailMatchActivity : AppCompatActivity(), DetailMatchView {
         swipeRefresh.isRefreshing = false
         urlAwayBadge = data[0].teamBadge
         Picasso.get().load(data[0].teamBadge).placeholder(R.drawable.load).error(R.drawable.error).into(imgAwayBadge)
-    }
-
-    private fun initEventsViews(events: Events) {
-        val dateFormatServer = SimpleDateFormat("yyyy-MM-dd")
-        val dateFormatCustom = SimpleDateFormat("E, dd MMM yyyy")
-        val date = dateFormatServer.parse(events.dateEvent)
-        val strDate = dateFormatCustom.format(date)
-
-        tvDateEvent.text = strDate
-        tvAwayScore.text = events.teamAwayScore
-        tvHomeScore.text = events.teamHomeScore
-        tvHomeName.text = events.teamHomeName
-        tvAwayName.text = events.teamAwayName
-        tvHomeFormation.text = events.strHomeFormation
-        tvAwayFormation.text = events.strAwayFormation
-        tvHomeGoalsDetail.text = events.strHomeGoalDetails
-        tvAwayGoalsDetail.text = events.strAwayGoalDetails
-        tvHomeShots.text = events.intHomeShots
-        tvAwayShots.text = events.intAwayShots
-        tvHomeGoalKeeper.text = events.strHomeLineupGoalkeeper
-        tvAwayGoalKeeper.text = events.strAwayLineupGoalkeeper
-        tvHomeDefense.text = events.strHomeLineupDefense
-        tvAwayDefense.text = events.strAwayLineupDefense
-        tvHomeMidfield.text = events.strHomeLineupMidfield
-        tvAwayMidfield.text = events.strAwayLineupMidfield
-        tvHomeForward.text = events.strHomeLineupForward
-        tvAwayForward.text = events.strAwayLineupForward
-        tvHomeSubtituties.text = events.strHomeLineupSubstitutes
-        tvAwaySubtituties.text = events.strAwayLineupSubstitutes
     }
 }

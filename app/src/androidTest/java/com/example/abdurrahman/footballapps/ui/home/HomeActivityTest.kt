@@ -63,20 +63,6 @@ class HomeActivityTest {
         // kembali
         Espresso.pressBack()
 
-        // Melakukan click pada search menu di actionBar untuk mencoba mencari match yg lain
-        Espresso.onView(ViewMatchers.withId(search_match))
-                .check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
-        Espresso.onView(ViewMatchers.withId(search_match)).perform(ViewActions.click())
-
-        Thread.sleep(1000)
-
-        // Melakukan action pada editText searchView untuk menuliskan Barcelona
-        Espresso.onView(isAssignableFrom(EditText::class.java)).perform(typeText("Barcelona"),pressImeActionButton())
-
-        // Menutup keyboard dan kembali ke menu awal
-        Espresso.closeSoftKeyboard()
-        Espresso.pressBack()
-
         Thread.sleep(1000)
 
         // Melakukan action click pada bottom navigation untuk tabs teams
